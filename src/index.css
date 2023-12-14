@@ -23,4 +23,18 @@
     h4 {
         @apply font-title;
     }
+
+    .herro-section {
+        height: calc(100vh - 67px + 30px );
+    }
+
+    @media screen and (min-width: 640px) {
+        .herro-section {
+            height: calc(100vh - 67px + 30px );
+        }
+    }
+
+    .menu-bar-links{
+        height: calc(100vh - 91px);
+    }
 }

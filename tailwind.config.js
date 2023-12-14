@@ -38,15 +38,20 @@ export default {
             title: ['Rubik'],
         },
         fontSize: {
-            'small': '11.386px',
-            'h4': '25.4209px',
-            'h3': '38.0132px',
-            'h2': '56.8429px',
-            'h1': '85px',
-            'xl': '292.14px',
+            small: '11.386px',
+            h4: '25.4209px',
+            h3: '38.0132px',
+            h2: '56.8429px',
+            h1: '85px',
+            xl: '292.14px',
             '2xl': '396.03px',
         },
-        extend: {},
+        extend: {
+            backgroundImage: {
+                'hero-section': "url('./public/bg 1.png')",
+                
+            },
+        },
     },
     plugins: [],
 };

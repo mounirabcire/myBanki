@@ -8,13 +8,13 @@ function Signup() {
     const navigate = useNavigate();
 
     return (
-        <div className="h-screen flex flex-col sm:flex-row">
-            <div className="h-1/2 bg flex justify-center items-center sm:w-1/2 sm:h-full">
+        <div className="h-screen bg flex flex-col sm:flex-row">
+            <div className="h-1/2 bg-white flex justify-center items-center sm:w-1/2 sm:h-full">
                 <div className="flex w-[600px] justify-center items-center">
                     <img src={bg1} alt="Log in" className="w-auto h-[400px]" />
                 </div>
             </div>
-            <div className="h-1/2 p-30 flex flex-col justify-center items-center sm:w-1/2 sm:h-full">
+            <div className="h-1/2 p-30 text-white flex flex-col justify-center items-center sm:w-1/2 sm:h-full">
                 <h2 className="mb-30 text-center text-h2 font-bold">Sign up</h2>
                 <form className="mb-30 space-y-15 w-[300px] ">
                     <div>
