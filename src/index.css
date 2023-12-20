@@ -37,4 +37,8 @@
     .menu-bar-links{
         height: calc(100vh - 91px);
     }
+
+    .features-title {
+        -webkit-text-stroke: 1px #4C84FF;
+    }
 }

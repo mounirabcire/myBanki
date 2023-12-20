@@ -16,7 +16,7 @@ function Homepage() {
     return (
         <header className="h-screen bg-hero-section bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
             {isVisible && <MenuBar onClick={handleMenuBar} />}
-            <div className="h-full px-10 pt-[30px] sm:px-30 lg:px-[80px] bg-[#00000080]">
+            <div className="h-full px-10 pt-30 sm:px-30 lg:px-[80px] bg-[#00000080]">
                 <nav className="flex justify-between items-center">
                     <Logo />
                     <PagesLinks />
@@ -30,7 +30,7 @@ function Homepage() {
                     </div>
                     <div className="hidden lg:block">
                         <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
-                            <Link to='login'>Get Started</Link>
+                            <Link to="login">Get Started</Link>
                         </button>
                     </div>
                 </nav>
