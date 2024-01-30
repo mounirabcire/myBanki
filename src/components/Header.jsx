@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import Logo from '../../components/Logo';
-import PagesLinks from '../../components/PagesLinks';
-import MenuBar from '../../components/MenuBar';
+import Logo from '../components/Logo';
+import PagesLinks from '../components/PagesLinks';
+import MenuBar from '../components/MenuBar';
 import { Link } from 'react-router-dom';
 
-function Homepage() {
+
+function Header() {
     // Hooks
     const [isVisible, SetIsVisible] = useState(false);
 
@@ -12,9 +13,8 @@ function Homepage() {
     function handleMenuBar() {
         SetIsVisible(pre => !pre);
     }
-
     return (
-        <header className="h-screen bg-hero-section bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
+        <header className="min-h-screen bg-hero-section bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
             {isVisible && <MenuBar onClick={handleMenuBar} />}
             <div className="h-full px-10 pt-30 sm:px-30 lg:px-[80px] bg-[#00000080]">
                 <nav className="flex justify-between items-center">
@@ -37,7 +37,7 @@ function Homepage() {
                 <section className="herro-section flex flex-col justify-center items-start ">
                     <div className="mb-60 space-y-60">
                         <div className="space-y-30">
-                            <h1 className=" max-w-[850px] text-h2 sm:text-h1 text-white ">
+                            <h1 className=" max-w-[850px] text-h2 sm:text-h1 text-white leading-[85px]">
                                 Make your life esier by{' '}
                                 <span className="text-blue-50">
                                     online banking
@@ -63,4 +63,4 @@ function Homepage() {
     );
 }
 
-export default Homepage;
+export default Header;

@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import bg1 from '../../../public/login.png';
-import { useNavigate } from 'react-router-dom';
+import bg1 from '../../public/login.png';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     return (
         <div className="h-screen flex flex-col sm:flex-row">
@@ -42,10 +40,7 @@ function Login() {
                 </form>
                 <p className="w-full text-center ">
                     Don't have an account?{' '}
-                    <span
-                        className="text-blue-50 underline font-medium cursor-pointer"
-                        onClick={() => navigate('/signup')}
-                    >
+                    <span className="text-blue-50 underline font-medium cursor-pointer">
                         Sign up
                     </span>
                 </p>

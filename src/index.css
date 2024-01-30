@@ -12,6 +12,7 @@
     }
 
     html {
+        scroll-behavior: smooth;
         @apply bg-white;
         @apply font-body;
         font-size: clamp(1em, 0.2083vw + 0.9437em, 1.0625em);
@@ -38,7 +39,7 @@
         height: calc(100vh - 91px);
     }
 
-    .features-title {
+    .titles {
         -webkit-text-stroke: 1px #4C84FF;
     }
 }

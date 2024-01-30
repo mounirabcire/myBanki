@@ -1,20 +1,20 @@
-import icon1 from '../../../public/icon-6.svg';
-import icon2 from '../../../public/icon.svg';
-import icon3 from '../../../public/icon-1.svg';
-import icon4 from '../../../public/icon-2.svg';
-import icon5 from '../../../public/icon-3.svg';
-import icon6 from '../../../public/icon-4.svg';
+import icon1 from '../../public/icon-6.svg';
+import icon2 from '../../public/icon.svg';
+import icon3 from '../../public/icon-1.svg';
+import icon4 from '../../public/icon-2.svg';
+import icon5 from '../../public/icon-3.svg';
+import icon6 from '../../public/icon-4.svg';
 
 function Features() {
     return (
-        <section className="min-h-screen px-10 pt-30 pb-30 sm:px-30 lg:px-[80px] relative overflow-x-hidden">
-            <h1 className="features-title text-[78px] sm:text-[170px] lg:text-[200px] text-gray-30 opacity-50 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed z-[-1] ">
+        <section id='features' className="min-h-screen px-10 py-30 sm:px-30 lg:px-[80px] relative overflow-x-hidden">
+            <h1 className="titles text-[78px] sm:text-[170px] lg:text-[200px] text-gray-30 opacity-50 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] absolute z-[-1] ">
                 FEATURES
             </h1>
             <div className="flex flex-wrap gap-30 justify-center items-start">
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon2} alt="Icon" />
+                        <img className="w-60" src={icon2} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Deposite
@@ -27,7 +27,7 @@ function Features() {
                 </div>
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon5} alt="Icon" />
+                        <img className="w-60" src={icon5} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Withdraw
@@ -40,7 +40,7 @@ function Features() {
                 </div>
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon1} alt="Icon" />
+                        <img className="w-60" src={icon1} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Request Loan
@@ -53,7 +53,7 @@ function Features() {
                 </div>
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon6} alt="Icon" />
+                        <img className="w-60" src={icon6} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Pay Loan
@@ -66,7 +66,7 @@ function Features() {
                 </div>
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon3} alt="Icon" />
+                        <img className="w-60" src={icon3} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Transfert Money
@@ -80,7 +80,7 @@ function Features() {
                 </div>
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
-                        <img className='w-60' src={icon4} alt="Icon" />
+                        <img className="w-60" src={icon4} alt="Icon" />
                     </div>
                     <h3 className=" text-center text-h3 mt-30 mb-15">
                         Save Money

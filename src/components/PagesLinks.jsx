@@ -1,11 +1,17 @@
-import { NavLink } from 'react-router-dom';
-
 function PagesLinks() {
     return (
-        <div className={`hidden lg:block space-x-30 text-white`}>
-            <NavLink to="/features">Features</NavLink>
-            <NavLink to="/pricing">Pricing</NavLink>
-            <NavLink to="/contact">contact</NavLink>
+        <div className={`hidden lg:block  text-white`}>
+            <ul className="flex items-center gap-30">
+                <li>
+                    <a href="#features">Features</a>
+                </li>
+                <li>
+                    <a href="#pricing">Pricing</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
         </div>
     );
 }
