@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import bg1 from '../../../public/login.png';
+import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -19,6 +20,15 @@ function Signup() {
                 <form className="mb-30 space-y-15 w-[300px] ">
                     <div>
                         <input
+                            value={userName}
+                            onChange={e => setUserName(e.target.value)}
+                            placeholder="Username..."
+                            required
+                            className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
+                        />
+                    </div>
+                    <div>
+                        <input
                             type="email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
@@ -29,7 +39,7 @@ function Signup() {
                     </div>
                     <div>
                         <input
-                            type='password'
+                            type="password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             placeholder="Password..."

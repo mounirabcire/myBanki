@@ -1,14 +1,21 @@
-function Dashboard() {
+import { useState } from 'react';
+
+function Dashboard({ state, dispatch }) {
+    const [action, setAction] = useState('');
+    const { userName, balance, transactions } = state;
+
     return (
         <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30">
             <div className="space-y-15 max-w-[330px] ">
                 <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
-                    <h4 className="text-h4">Mounir</h4>
+                    <h4 className="text-h4">{userName}</h4>
                     <p>
-                        <b>$10.000</b>
+                        <b>${balance}</b>
                     </p>
                     <p className="text-small">
-                        Last action you deposit: <b> $100</b>
+                        {transactions.length === 0
+                            ? 'No transactions have been made yet!'
+                            : 'Last time you deposite: $100'}
                     </p>
                     <p>
                         <span className="underline cursor-pointer">

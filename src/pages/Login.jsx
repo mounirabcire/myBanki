@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import bg1 from '../../public/login.png';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-    const [email, setEmail] = useState('');
+function Login({ dispatch }) {
+    const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
+    function handleLogin(e) {
+        e.preventDefault();
+
+        dispatch({ type: 'user/login', payload: userName });
+        navigate('/dashboard');
+    }
     return (
         <div className="h-screen flex flex-col sm:flex-row">
             <div className="h-1/2 p-30 flex flex-col justify-center items-center sm:w-1/2 sm:h-full">
@@ -12,10 +20,9 @@ function Login() {
                 <form className="mb-30 space-y-15 w-[300px] ">
                     <div>
                         <input
-                            type="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            placeholder="Email..."
+                            value={userName}
+                            onChange={e => setUserName(e.target.value)}
+                            placeholder="Username..."
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
@@ -34,13 +41,17 @@ function Login() {
                         <input
                             type="submit"
                             value="Log in"
+                            onClick={handleLogin}
                             className="px-15 w-1/2 py-10 bg-blue-50 rounded-normal text-white cursor-pointer font-bold"
                         />
                     </div>
                 </form>
                 <p className="w-full text-center ">
                     Don't have an account?{' '}
-                    <span className="text-blue-50 underline font-medium cursor-pointer">
+                    <span
+                        className="text-blue-50 underline font-medium cursor-pointer"
+                        onClick={() => navigate('/signup')}
+                    >
                         Sign up
                     </span>
                 </p>
