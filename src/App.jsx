@@ -9,6 +9,8 @@ import PageNotFound from './pages/PageNotFound';
 
 const initialeState = {
     userName: '',
+    email: '',
+    password: '',
     balance: 0,
     loan: 0,
     isRequestedLoan: false,
