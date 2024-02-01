@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
+import { useAuth } from '../contexts/AuthenticationProvider';
 
 // TASKS
 // 1- if the user doesn't exist an error message will pop up(Sing up)
@@ -20,6 +21,7 @@ function Login() {
     const [passwordErr, setPasswordErr] = useState('');
     const navigate = useNavigate();
     const { dispatch } = useUser();
+    const { isAuthenticated } = useAuth();
 
     // setting the states back to their original state ,
     function handleStates() {
@@ -66,6 +68,10 @@ function Login() {
             return;
         }
     }
+
+    useEffect(() => {
+        if (isAuthenticated) navigate('/dashboard', { replace: true });
+    }, [isAuthenticated, navigate]);
 
     return (
         <div className="h-screen flex flex-col sm:flex-row">

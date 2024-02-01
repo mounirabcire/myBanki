@@ -1,29 +1,42 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { UserProvider } from './contexts/UserProvider';
+import { AuthenticationProvider } from './contexts/AuthenticationProvider';
+
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Signup from './components/Signup';
 import Dashboard from './pages/Dashboard';
 import PageNotFound from './pages/PageNotFound';
-import { UserProvider } from './contexts/UserProvider';
+
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-    // TASKS
-    // 1- create an error message component (Login, Singup) => reusable peace of code!
-    // 2- if there was the same email so the user has already an account, and there was the same username the username is existed (Singup component)
+    // FIXME: create an error message component (login, signup) => reusable code
+    // FIXME: if the user provided the samee email so he already has an account,
+    //        and if he provided the same username so the username has already been tooken (Singup )
 
     return (
-        <BrowserRouter>
-            <UserProvider>
-                <Routes>
-                    <Route index element={<Homepage />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="signup" element={<Signup />} />
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="*" element={<PageNotFound />} />
-                </Routes>
-            </UserProvider>
-        </BrowserRouter>
+        <UserProvider>
+            <AuthenticationProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route index element={<Homepage />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="signup" element={<Signup />} />
+                        <Route
+                            path="dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="*" element={<PageNotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </AuthenticationProvider>
+        </UserProvider>
     );
 }
 
