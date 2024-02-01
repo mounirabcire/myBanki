@@ -15,9 +15,35 @@ const initialeState = {
 function reducer(state, action) {
     switch (action.type) {
         case 'user/singup':
-            const { userName, email, password } = action.payload;
-            // payload = the user info = {}
-            return { ...state, userName, email, password };
+            // payload = the new user info = {}
+            const {
+                userName: newUsername,
+                email: newEmail,
+                password: newPassword,
+            } = action.payload;
+
+            return {
+                ...state,
+                userName: newUsername,
+                email: newEmail,
+                password: newPassword,
+            };
+
+        case 'user/login':
+            // payload = the old user info = {}
+            const {
+                userName: oldUsername,
+                email: oldEmail,
+                password: oldPassword,
+            } = action.payload;
+
+            return {
+                ...state,
+                userName: oldUsername,
+                email: oldEmail,
+                password: oldPassword,
+            };
+
         default:
             return { ...state };
     }

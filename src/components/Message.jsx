@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-function Message({ children, dispatch }) {
+function Message({ children, type }) {
     const navigate = useNavigate();
 
     function hanndleCloseMessage() {

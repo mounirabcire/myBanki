@@ -8,6 +8,10 @@ import PageNotFound from './pages/PageNotFound';
 import { UserProvider } from './contexts/UserProvider';
 
 function App() {
+    // TASKS
+    // 1- create an error message component (Login, Singup) => reusable peace of code!
+    // 2- if there was the same email so the user has already an account, and there was the same username the username is existed (Singup component)
+
     return (
         <BrowserRouter>
             <UserProvider>

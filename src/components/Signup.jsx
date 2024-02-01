@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
-import Message from './Message';
 import { useUser } from '../contexts/UserProvider';
+
+import bg1 from '../../public/login.png';
+import Message from './Message';
 
 function Signup() {
     const [userName, setUserName] = useState('');
@@ -11,7 +12,7 @@ function Signup() {
     // based on hasAccount state we will dispaly an error or success message
     const [hasAccount, setHasAccount] = useState(null);
     const navigate = useNavigate();
-    const {dispatch} = useUser();
+    const { dispatch } = useUser();
 
     // setting the states back to their original state ,
     function handleStates() {
@@ -41,12 +42,13 @@ function Signup() {
                     item.email === newUser.email
             );
 
-            // If the user doesn't exist add user info to the local storage else return the previous users
+            // If the user doesn't exist, add user info to the local storage, else return the previous users
             if (!isExisted) {
                 localStorage.setItem(
                     'users',
                     JSON.stringify([...users, newUser])
                 );
+                // updating the state
                 dispatch({ type: 'user/singup', payload: newUser });
             } else {
                 localStorage.setItem('users', JSON.stringify([...users]));
@@ -54,12 +56,14 @@ function Signup() {
 
             setHasAccount(isExisted);
             handleStates();
+            return;
         } else {
             // If there are no users in the local storage so a new local storage is created 'users',
             localStorage.setItem('users', JSON.stringify([newUser]));
             setHasAccount(false);
             dispatch({ type: 'user/singup', payload: newUser });
             handleStates();
+            return;
         }
     }
 
