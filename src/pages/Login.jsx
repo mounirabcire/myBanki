@@ -2,16 +2,19 @@ import { useState } from 'react';
 import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
 
+// TASKS
+// 1- if the user doesn't exist an error message will pop up(Sing up)
+// 2- if the user exists based on his info obj we will diplay the log in action
+
 function Login({ dispatch }) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [hasAccount, setHasAccount] = useState(null);
     const navigate = useNavigate();
 
     function handleLogin(e) {
         e.preventDefault();
-
-        dispatch({ type: 'user/login', payload: userName });
-        navigate('/dashboard');
+        
     }
     return (
         <div className="h-screen flex flex-col sm:flex-row">

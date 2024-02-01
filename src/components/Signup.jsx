@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
-
-// TASKS:
-// 1- If the user has signed up seccessfully, a Message will pop up 
-// 2- From the message which has been poped up we will navigate the user to his dashboard
-
-
-
+import Message from './Message';
+import { useUser } from '../contexts/UserProvider';
 
 function Signup() {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // based on hasAccount state we will dispaly an error
+    // based on hasAccount state we will dispaly an error or success message
     const [hasAccount, setHasAccount] = useState(null);
     const navigate = useNavigate();
+    const {dispatch} = useUser();
 
     // setting the states back to their original state ,
     function handleStates() {
@@ -46,24 +42,34 @@ function Signup() {
             );
 
             // If the user doesn't exist add user info to the local storage else return the previous users
-            !isExisted
-                ? localStorage.setItem(
-                      'users',
-                      JSON.stringify([...users, newUser])
-                  )
-                : localStorage.setItem('users', JSON.stringify([...users]));
+            if (!isExisted) {
+                localStorage.setItem(
+                    'users',
+                    JSON.stringify([...users, newUser])
+                );
+                dispatch({ type: 'user/singup', payload: newUser });
+            } else {
+                localStorage.setItem('users', JSON.stringify([...users]));
+            }
 
             setHasAccount(isExisted);
             handleStates();
         } else {
             // If there are no users in the local storage so a new local storage is created 'users',
             localStorage.setItem('users', JSON.stringify([newUser]));
+            setHasAccount(false);
+            dispatch({ type: 'user/singup', payload: newUser });
             handleStates();
         }
     }
 
     return (
         <div className="h-screen bg flex flex-col sm:flex-row relative">
+            {hasAccount === false && (
+                <Message type="singup" dispatch={dispatch}>
+                    You've signed up successfully!
+                </Message>
+            )}
             <div className="h-1/2 bg-white flex justify-center items-center sm:w-1/2 sm:h-full">
                 <div className="flex w-[600px] justify-center items-center">
                     <img src={bg1} alt="Log in" className="w-auto h-[400px]" />

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useUser } from '../contexts/UserProvider';
 
-function Dashboard({ state, dispatch }) {
-    const [action, setAction] = useState('');
-    const { userName, balance, transactions } = state;
+function Dashboard() {
+    const user = useUser();
+    const { userName, balance, transactions } = user;
 
     return (
         <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30">
