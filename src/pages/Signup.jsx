@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
 
 import bg1 from '../../public/login.png';
-import Message from './Message';
+import Message from '../components/Message';
 
 function Signup() {
     const [userName, setUserName] = useState('');
@@ -35,12 +35,8 @@ function Signup() {
         const users = JSON.parse(localStorage?.getItem('users')) ?? [];
 
         if (users.length > 0) {
-            // If the users local storage exists so check if the user already has an account(checking the username or the email)
-            const isExisted = users.some(
-                item =>
-                    item.userName === newUser.userName ||
-                    item.email === newUser.email
-            );
+            // If the users local storage exists so check if the user already has an account(checking email)
+            const isExisted = users.some(item => item.email === newUser.email);
 
             // If the user doesn't exist, add user info to the local storage, else return the previous users
             if (!isExisted) {
@@ -93,17 +89,6 @@ function Signup() {
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
-                        {hasAccount && (
-                            <p className="mt-5 text-red text-small">
-                                You already have an account!{' '}
-                                <span
-                                    className="text-blue-50 underline font-medium cursor-pointer"
-                                    onClick={() => navigate('/login')}
-                                >
-                                    Log in
-                                </span>
-                            </p>
-                        )}
                     </div>
                     <div>
                         <input
@@ -117,6 +102,17 @@ function Signup() {
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
+                        {hasAccount && (
+                            <p className="mt-5 text-red text-small">
+                                the email has been used before!{' '}
+                                <span
+                                    className="text-blue-50 underline font-medium cursor-pointer"
+                                    onClick={() => navigate('/login')}
+                                >
+                                    Log in
+                                </span>
+                            </p>
+                        )}
                     </div>
                     <div>
                         <input

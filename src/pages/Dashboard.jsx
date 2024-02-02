@@ -1,13 +1,22 @@
+import { Link, Outlet } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
+import { useState } from 'react';
 
 function Dashboard() {
+    const [doAction, setDoAction] = useState(false);
+    const [action, setAction] = useState('');
     const user = useUser();
-    const { userName, balance, transactions } = user;
+    const { userName, balance, transactions, loan } = user;
+
+    function handleCloseAction() {
+        setDoAction(false);
+    }
+    // console.log(user);
 
     return (
         <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30">
-            <div className="space-y-15 max-w-[330px] ">
-                <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
+            <div className="space-y-15 max-w-[330px]">
+                <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                     <h4 className="text-h4">{userName}</h4>
                     <p>
                         <b>${balance}</b>
@@ -18,11 +27,57 @@ function Dashboard() {
                             : 'Last time you deposite: $100'}
                     </p>
                     <p>
-                        <span className="underline cursor-pointer">
+                        <span
+                            className="underline cursor-pointer"
+                            onClick={() => setDoAction(pre => !pre)}
+                        >
                             Do an action
                         </span>{' '}
                         <span>&rarr;</span>
                     </p>
+                    <div
+                        className={`h-full px-10 py-15 rounded-l-normal absolute top-[-5px] right-[0px] bg text-white z-10 ${
+                            !doAction && 'hidden'
+                        } `}
+                    >
+                        <ul className=" space-y-5 flex flex-col justify-center items-start ">
+                            <li className="underline capitalize cursor-pointer">
+                                <Link
+                                    to={'deposit'}
+                                    onClick={handleCloseAction}
+                                >
+                                    deposit <span>&rarr;</span>
+                                </Link>
+                            </li>
+                            <li className="underline capitalize cursor-pointer">
+                                <Link
+                                    to={'withdraw'}
+                                    onClick={handleCloseAction}
+                                >
+                                    withdraw <span>&rarr;</span>
+                                </Link>
+                            </li>
+                            <li className="underline capitalize cursor-pointer">
+                                <Link
+                                    to={'loan/request'}
+                                    onClick={handleCloseAction}
+                                >
+                                    request loan <span>&rarr;</span>
+                                </Link>
+                            </li>
+
+                            {loan > 0 && (
+                                <li className="underline capitalize cursor-pointer">
+                                    <Link
+                                        to={'loan/pay'}
+                                        onClick={handleCloseAction}
+                                    >
+                                        pay loan back <span>&rarr;</span>
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
                 <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
                     <h2 className="text-h3 ">Our News</h2>
@@ -58,21 +113,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="space-y-15 max-w-[330px] ">
-                <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
-                    <h2 className="text-h3 ">Deposit</h2>
-                    <div className="space-y-10">
-                        <input
-                            type="number"
-                            className="p-5 w-full bg-transparent border border-blue-50 focus:outline-none"
-                        />
-
-                        <input
-                            type="button"
-                            value="Deposit"
-                            className="px-15 w-1/2 py-10 bg-blue-50 rounded-normal text-white cursor-pointer font-bold"
-                        />
-                    </div>
-                </div>
+                <Outlet />
                 <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
                     <h2 className="text-h3 ">Savings</h2>
                     <div>

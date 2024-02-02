@@ -44,6 +44,37 @@ function reducer(state, action) {
                 password: oldPassword,
             };
 
+        case 'account/deposit':
+            // payload = amount
+            return { ...state, balance: state.balance + action.payload };
+
+        case 'account/withdraw':
+            return {
+                ...state,
+                // checking if the current amount that the user want to withdraw is grater than the current balance
+                balance:
+                    action.payload > state.balance
+                        ? state.balance
+                        : state.balance - action.payload,
+            };
+
+        case 'account/requestLoan':
+            // checking if the user has requested loan
+            if (state.loan > 0) return { ...state };
+            return {
+                ...state,
+                loan: action.payload,
+                balance: state.balance + action.payload,
+            };
+
+        case 'account/payLoan':
+            if (state.loan === 0) return { ...state };
+            return {
+                ...state,
+                loan: 0,
+                balance: state.balance - state.loan,
+            };
+
         default:
             return { ...state };
     }

@@ -4,9 +4,11 @@ import { useUser } from './UserProvider';
 const AuthenticationContext = createContext();
 function AuthenticationProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    // gettin the userName variable from the userUser costume hook
     const { userName } = useUser();
 
     useEffect(() => {
+        // When the component first mounts, we'll check if the username is an empty string
         setIsAuthenticated(userName !== '');
     }, [userName]);
 

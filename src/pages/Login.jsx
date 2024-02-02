@@ -4,10 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
 import { useAuth } from '../contexts/AuthenticationProvider';
 
-// TASKS
-// 1- if the user doesn't exist an error message will pop up(Sing up)
-// 2- if the user exists based on his info obj we will diplay the log in action
-
 function Login() {
     // this function will be called in the first render, (lazy evaluation)
     const [users] = useState(
@@ -70,6 +66,8 @@ function Login() {
     }
 
     useEffect(() => {
+        // when this component first mounts, we'll check if the user is authenticated, if so we'll navigate to the dashboard page and
+        // the user will not be able to go back to login page ==> {replace: true}
         if (isAuthenticated) navigate('/dashboard', { replace: true });
     }, [isAuthenticated, navigate]);
 

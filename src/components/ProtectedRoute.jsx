@@ -6,8 +6,9 @@ function ProtectedRoute({ children }) {
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
-    console.log(isAuthenticated);
     useEffect(() => {
+        // when this component first mounts, we check if the user is authenticated, if so we return the children,
+        // otherwise we navigate directly to the login page
         if (!isAuthenticated) navigate('/login');
     }, [isAuthenticated, navigate]);
 

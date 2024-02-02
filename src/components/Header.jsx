@@ -4,7 +4,6 @@ import PagesLinks from '../components/PagesLinks';
 import MenuBar from '../components/MenuBar';
 import { Link } from 'react-router-dom';
 
-
 function Header() {
     // Hooks
     const [isVisible, SetIsVisible] = useState(false);
@@ -50,10 +49,10 @@ function Header() {
                         </div>
                         <div className="space-x-30">
                             <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
-                                <Link to="login">Get Started</Link>
+                                <Link to="dashboard">Get Started</Link>
                             </button>
                             <button className="border bg-transparent px-[24px] py-15 text-white rounded-normal font-bold ">
-                                <Link to="features">See Features</Link>
+                                <a href="#features">See Features</a>
                             </button>
                         </div>
                     </div>
