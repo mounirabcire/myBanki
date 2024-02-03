@@ -3,9 +3,24 @@ import { useUser } from '../contexts/UserProvider';
 
 function RequestLoan() {
     const [amount, setAmount] = useState('');
-    const { dispatch } = useUser();
+    const [error, setError] = useState('');
+    const { dispatch, loan } = useUser();
 
     function handleRequestLoan() {
+        if (!amount) {
+            setError('Please enter an amount');
+            return;
+        }
+        if (amount < 0) {
+            setError('Please enter a positive amount');
+            setAmount('');
+            return;
+        }
+        if (loan > 0) {
+            setError('You already have a loan');
+            setAmount('');
+            return;
+        }
         dispatch({ type: 'account/requestLoan', payload: amount });
         setAmount('');
     }
@@ -17,9 +32,15 @@ function RequestLoan() {
                 <input
                     type="number"
                     value={amount}
-                    onChange={e => setAmount(Number(e.target.value))}
+                    onChange={e => {
+                        setAmount(Number(e.target.value));
+                        setError('');
+                    }}
                     className="p-5 w-full bg-transparent border border-blue-50 focus:outline-none"
                 />
+                {error !== '' && (
+                    <p className="mt-5 text-red text-small">{error}</p>
+                )}
 
                 <input
                     type="button"

@@ -3,9 +3,19 @@ import { useUser } from '../contexts/UserProvider';
 
 function Deposit() {
     const [amount, setAmount] = useState('');
+    const [error, setError] = useState('');
     const { dispatch } = useUser();
 
     function handleDeposit() {
+        if (!amount) {
+            setError('Please enter an amount');
+            return;
+        }
+        if (amount < 0) {
+            setError('Please enter a positive amount');
+            setAmount('');
+            return;
+        }
         dispatch({ type: 'account/deposit', payload: amount });
         setAmount('');
     }
@@ -17,9 +27,15 @@ function Deposit() {
                 <input
                     type="number"
                     value={amount}
-                    onChange={e => setAmount(Number(e.target.value))}
+                    onChange={e => {
+                        setAmount(Number(e.target.value));
+                        setError('');
+                    }}
                     className="p-5 w-full bg-transparent border border-blue-50 focus:outline-none"
                 />
+                {error !== '' && (
+                    <p className="mt-5 text-red text-small">{error}</p>
+                )}
 
                 <input
                     type="button"

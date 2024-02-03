@@ -30,6 +30,10 @@ function Signup() {
             userName,
             email,
             password,
+            balance: 0,
+            loan: 0,
+            isRequestedLoan: false,
+            transactions: [],
         };
         // If there are no users in the local storage so an empty array is returned,
         const users = JSON.parse(localStorage?.getItem('users')) ?? [];

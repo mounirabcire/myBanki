@@ -12,6 +12,13 @@ const initialeState = {
     transactions: [],
 };
 
+function getUserFromLoacalStorage(key, oldUsername) {
+    const users = JSON.parse(localStorage?.getItem(key) || '[]');
+    return users.find(user => user.userName === oldUsername);
+}
+
+function updateLocalStorage() {}
+
 function reducer(state, action) {
     switch (action.type) {
         case 'user/singup':
@@ -31,22 +38,33 @@ function reducer(state, action) {
 
         case 'user/login':
             // payload = the old user info = {}
-            const {
-                userName: oldUsername,
-                email: oldEmail,
-                password: oldPassword,
-            } = action.payload;
+            const { userName: oldUsername } = action.payload;
+            const oldUserLogin = getUserFromLoacalStorage('users', oldUsername);
+            console.log(oldUserLogin);
 
             return {
-                ...state,
-                userName: oldUsername,
-                email: oldEmail,
-                password: oldPassword,
+                ...oldUserLogin,
             };
 
         case 'account/deposit':
             // payload = amount
-            return { ...state, balance: state.balance + action.payload };
+            const oldUserDeposit = getUserFromLoacalStorage(
+                'users',
+                state.userName
+            );
+            return {
+                ...state,
+                balance: state.balance + action.payload,
+                transactions: [
+                    ...state.transactions,
+                    {
+                        amount: action.payload,
+                        action: 'Deposit',
+                        date: new Date().toDateString(),
+                        time: new Date().toLocaleTimeString(),
+                    },
+                ],
+            };
 
         case 'account/withdraw':
             return {
@@ -56,6 +74,15 @@ function reducer(state, action) {
                     action.payload > state.balance
                         ? state.balance
                         : state.balance - action.payload,
+                transactions: [
+                    ...state.transactions,
+                    {
+                        amount: action.payload,
+                        action: 'Withdraw',
+                        date: new Date().toDateString(),
+                        time: new Date().toLocaleTimeString(),
+                    },
+                ],
             };
 
         case 'account/requestLoan':
@@ -65,6 +92,15 @@ function reducer(state, action) {
                 ...state,
                 loan: action.payload,
                 balance: state.balance + action.payload,
+                transactions: [
+                    ...state.transactions,
+                    {
+                        amount: action.payload,
+                        action: 'Request loan',
+                        date: new Date().toDateString(),
+                        time: new Date().toLocaleTimeString(),
+                    },
+                ],
             };
 
         case 'account/payLoan':
@@ -73,6 +109,15 @@ function reducer(state, action) {
                 ...state,
                 loan: 0,
                 balance: state.balance - state.loan,
+                transactions: [
+                    ...state.transactions,
+                    {
+                        amount: state.loan,
+                        action: 'Pay loan',
+                        date: new Date().toDateString(),
+                        time: new Date().toLocaleTimeString(),
+                    },
+                ],
             };
 
         default:

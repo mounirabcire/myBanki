@@ -1,26 +1,30 @@
 import { Link, Outlet } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
 import { useState } from 'react';
+import Transaction from '../components/Transaction';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
-    const [action, setAction] = useState('');
     const user = useUser();
     const { userName, balance, transactions, loan } = user;
 
     function handleCloseAction() {
         setDoAction(false);
     }
-    // console.log(user);
 
     return (
-        <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30">
+        <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30 relative">
             <div className="space-y-15 max-w-[330px]">
                 <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                     <h4 className="text-h4">{userName}</h4>
                     <p>
                         <b>${balance}</b>
                     </p>
+                    {loan > 0 && (
+                        <p className="loan text-small">
+                            You have a loan of <b>${loan}</b>
+                        </p>
+                    )}
                     <p className="text-small">
                         {transactions.length === 0
                             ? 'No transactions have been made yet!'
@@ -122,9 +126,30 @@ function Dashboard() {
                 </div>
             </div>
             <div className="space-y-15 max-w-[330px] ">
-                <div>01/01/2024</div>
                 <div className="h-full p-15 space-y-5 border-[1px] border-solid border-blue-10">
                     <h2 className="text-h3 ">My Transactions</h2>
+                    <div className="space-y-5">
+                        {transactions.length === 0 ? (
+                            <p className="text-small">No Transactions</p>
+                        ) : (
+                            transactions.map(trans => (
+                                <Transaction
+                                    key={crypto.randomUUID()}
+                                    trans={trans}
+                                />
+                            ))
+                        )}
+                    </div>
+                </div>
+            </div>
+            <div className="px-15 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold ">
+                <div className='flex items-center gap-60'>
+                    <p>In: $0</p>
+                    <p>Out: $0</p>
+                    <p>Sort</p>
+                </div>
+                <div>
+                    <p>12:00:00 PM</p>
                 </div>
             </div>
         </section>

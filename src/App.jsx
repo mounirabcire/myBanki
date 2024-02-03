@@ -19,10 +19,9 @@ function App() {
     // FIXME: if the user  provided the same username => the username has already been tooken (Singup )
     // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard)
     // TODO: Format currency module
-    // TODO: display an error message if the user want to withdraw an amount greater than his balance (Withdraw => below input)
-    // FIXME: The inputs don't accept negatvie numbers!
-    // FIXME: we don't need isRequestedLoan varibale, based on the loan variable if > 0 or not
-    // FIXME: we don't need an input, just a button  (PayLoan)
+    // TODO: update the locale sotorage
+    // FIXME: when paying loan back, we should check if curretn balance is greater than the loan
+    // TODO: add a costom hook where we can update adn get the local storage
 
     return (
         <UserProvider>
