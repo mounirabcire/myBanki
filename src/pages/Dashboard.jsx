@@ -1,16 +1,43 @@
 import { Link, Outlet } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Transaction from '../components/Transaction';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
+    const [currentTime, setCurrentTime] = useState(new Date());
     const user = useUser();
     const { userName, balance, transactions, loan } = user;
+    const posAmount = transactions.reduce(
+        (acc, tran) =>
+            tran.action === 'Deposit' || tran.action === 'Request loan'
+                ? acc + tran.amount
+                : acc,
+        0
+    );
+    const negAmount = transactions.reduce(
+        (acc, tran) =>
+            tran.action === 'Withdraw' || tran.action === 'Pay loan'
+                ? acc + tran.amount
+                : acc,
+        0
+    );
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const seconds = currentTime.getSeconds();
+    const time = hours < 12 ? 'AM' : 'PM';
 
     function handleCloseAction() {
         setDoAction(false);
     }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30 relative">
@@ -143,13 +170,20 @@ function Dashboard() {
                 </div>
             </div>
             <div className="px-15 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold ">
-                <div className='flex items-center gap-60'>
-                    <p>In: $0</p>
-                    <p>Out: $0</p>
+                <div className="flex items-center gap-60">
+                    <p>In: ${posAmount}</p>
+                    <p>Out: ${negAmount}</p>
                     <p>Sort</p>
                 </div>
                 <div>
-                    <p>12:00:00 PM</p>
+                    <p className="space-x-5">
+                        <span>{hours < 10 ? '0' + hours : hours}</span>
+                        <span>:</span>
+                        <span>{minutes < 10 ? '0' + minutes : minutes}</span>
+                        <span>:</span>
+                        <span>{seconds < 10 ? '0' + seconds : seconds}</span>
+                        <span>{time}</span>
+                    </p>
                 </div>
             </div>
         </section>

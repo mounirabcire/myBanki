@@ -19,7 +19,6 @@ function App() {
     // FIXME: if the user  provided the same username => the username has already been tooken (Singup )
     // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard)
     // TODO: Format currency module
-    // TODO: update the locale sotorage
     // FIXME: when paying loan back, we should check if curretn balance is greater than the loan
     // TODO: add a costom hook where we can update adn get the local storage
 
