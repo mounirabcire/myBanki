@@ -8,16 +8,31 @@ const initialeState = {
     password: '',
     balance: 0,
     loan: 0,
-    isRequestedLoan: false,
     transactions: [],
 };
 
 function getUserFromLoacalStorage(key, oldUsername) {
-    const users = JSON.parse(localStorage?.getItem(key) || '[]');
+    const users = JSON.parse(localStorage?.getItem(key));
     return users.find(user => user.userName === oldUsername);
 }
 
-function updateLocalStorage() {}
+function updateLocalStorage(key, oldUsername, data) {
+    // getting the users from local storage
+    const users = JSON.parse(localStorage.getItem(key));
+    // finding the current user from the users collection
+    const user = users.find(user => user.userName === oldUsername);
+    // updating the current user from the users collection
+    const userUpdated = { ...user, ...data };
+    // updating the users collection
+    const usersUpdated = users.map(user =>
+        user.userName === oldUsername
+            ? { ...user, ...userUpdated }
+            : { ...user }
+    );
+
+    // updating the local storage
+    localStorage.setItem(key, JSON.stringify(usersUpdated));
+}
 
 function reducer(state, action) {
     switch (action.type) {
@@ -37,23 +52,20 @@ function reducer(state, action) {
             };
 
         case 'user/login':
-            // payload = the old user info = {}
+            // payload = the user info that exists in the local storage = {}
             const { userName: oldUsername } = action.payload;
+            // getting the user's data from the local storage based on the username
             const oldUserLogin = getUserFromLoacalStorage('users', oldUsername);
-            console.log(oldUserLogin);
 
+            //updating the state of the user from the local storage
             return {
                 ...oldUserLogin,
             };
 
         case 'account/deposit':
-            // payload = amount
-            const oldUserDeposit = getUserFromLoacalStorage(
-                'users',
-                state.userName
-            );
-            return {
+            const stateUpdatedDeposit = {
                 ...state,
+
                 balance: state.balance + action.payload,
                 transactions: [
                     ...state.transactions,
@@ -65,9 +77,12 @@ function reducer(state, action) {
                     },
                 ],
             };
+            updateLocalStorage('users', state.userName, stateUpdatedDeposit);
+
+            return { ...stateUpdatedDeposit };
 
         case 'account/withdraw':
-            return {
+            const stateUpdatedWithdraw = {
                 ...state,
                 // checking if the current amount that the user want to withdraw is grater than the current balance
                 balance:
@@ -84,11 +99,15 @@ function reducer(state, action) {
                     },
                 ],
             };
+            updateLocalStorage('users', state.userName, stateUpdatedWithdraw);
+
+            return { ...stateUpdatedWithdraw };
 
         case 'account/requestLoan':
             // checking if the user has requested loan
             if (state.loan > 0) return { ...state };
-            return {
+
+            const stateUpdatedRequestLoan = {
                 ...state,
                 loan: action.payload,
                 balance: state.balance + action.payload,
@@ -102,10 +121,18 @@ function reducer(state, action) {
                     },
                 ],
             };
+            updateLocalStorage(
+                'users',
+                state.userName,
+                stateUpdatedRequestLoan
+            );
+
+            return { ...stateUpdatedRequestLoan };
 
         case 'account/payLoan':
             if (state.loan === 0) return { ...state };
-            return {
+
+            const stateUpdatedPayLoan = {
                 ...state,
                 loan: 0,
                 balance: state.balance - state.loan,
@@ -119,6 +146,9 @@ function reducer(state, action) {
                     },
                 ],
             };
+            updateLocalStorage('users', state.userName, stateUpdatedPayLoan);
+
+            return { ...stateUpdatedPayLoan };
 
         default:
             return { ...state };
