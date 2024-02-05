@@ -1,3 +1,5 @@
+import { numberFormat } from "../utils/numberFormat";
+
 function Transaction({ trans }) {
     const { amount, date, action, time } = trans;
     const color =
@@ -9,7 +11,7 @@ function Transaction({ trans }) {
     return (
         <div className="space-y-5 border-b">
             <div className="w-full flex items-center justify-between">
-                <p className={`text-small font-semibold ${color}`}>${amount}</p>
+                <p className={`text-small font-semibold ${color}`}>${numberFormat(amount)}</p>
                 <p>{action}</p>
             </div>
             <div className="text-small flex items-center gap-10 font-semibold">

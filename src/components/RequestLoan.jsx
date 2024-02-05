@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../contexts/UserProvider';
+import Message from './Message';
 
 function RequestLoan() {
     const [amount, setAmount] = useState('');
@@ -39,7 +40,7 @@ function RequestLoan() {
                     className="p-5 w-full bg-transparent border border-blue-50 focus:outline-none"
                 />
                 {error !== '' && (
-                    <p className="mt-5 text-red text-small">{error}</p>
+                    <Message type="error">{error}</Message>
                 )}
 
                 <input

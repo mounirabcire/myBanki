@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
 import { useEffect, useState } from 'react';
 import Transaction from '../components/Transaction';
+import { numberFormat } from '../utils/numberFormat';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
@@ -43,19 +44,23 @@ function Dashboard() {
         <section className=" px-10 py-30 min-h-screen text flex items-start justify-center gap-30 relative">
             <div className="space-y-15 max-w-[330px]">
                 <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
-                    <h4 className="text-h4">{userName}</h4>
+                    <h4 className="text-h4">{userName.toUpperCase()}</h4>
                     <p>
-                        <b>${balance}</b>
+                        <b>${numberFormat(balance)}</b>
                     </p>
                     {loan > 0 && (
                         <p className="loan text-small">
-                            You have a loan of <b>${loan}</b>
+                            You have a loan of <b>${numberFormat(loan)}</b>
                         </p>
                     )}
                     <p className="text-small">
                         {transactions.length === 0
                             ? 'No transactions have been made yet!'
-                            : 'Last time you deposite: $100'}
+                            : `Last action: ${
+                                  transactions[transactions.length - 1].action
+                              } $${numberFormat(
+                                  transactions[transactions.length - 1].amount
+                              )}`}
                     </p>
                     <p>
                         <span

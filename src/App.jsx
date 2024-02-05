@@ -15,12 +15,8 @@ import RequestLoan from './components/RequestLoan';
 import PayLoan from './components/PayLoan';
 
 function App() {
-    // FIXME: create an error message component (login, signup) => reusable code
-    // FIXME: if the user  provided the same username => the username has already been tooken (Singup )
-    // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard)
-    // TODO: Format currency module
-    // FIXME: when paying loan back, we should check if curretn balance is greater than the loan
-    // TODO: add a costom hook where we can update adn get the local storage
+    // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard).
+    // TODO: add a costom hook where we can update adn get the local storage.
 
     return (
         <UserProvider>

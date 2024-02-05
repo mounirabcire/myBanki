@@ -65,7 +65,6 @@ function reducer(state, action) {
         case 'account/deposit':
             const stateUpdatedDeposit = {
                 ...state,
-
                 balance: state.balance + action.payload,
                 transactions: [
                     ...state.transactions,

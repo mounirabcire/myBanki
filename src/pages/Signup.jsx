@@ -11,6 +11,7 @@ function Signup() {
     const [password, setPassword] = useState('');
     // based on hasAccount state we will dispaly an error or success message
     const [hasAccount, setHasAccount] = useState(null);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const { dispatch } = useUser();
 
@@ -32,7 +33,6 @@ function Signup() {
             password,
             balance: 0,
             loan: 0,
-            isRequestedLoan: false,
             transactions: [],
         };
         // If there are no users in the local storage so an empty array is returned,
@@ -40,22 +40,37 @@ function Signup() {
 
         if (users.length > 0) {
             // If the users local storage exists so check if the user already has an account(checking email)
-            const isExisted = users.some(item => item.email === newUser.email);
+            const isExistedEmail = users.some(
+                item => item.email === newUser.email
+            );
+            const isExistedUserName = users.some(
+                item => item.userName === newUser.userName
+            );
+
+            console.log(isExistedEmail, isExistedUserName);
 
             // If the user doesn't exist, add user info to the local storage, else return the previous users
-            if (!isExisted) {
+            if (!isExistedEmail && !isExistedUserName) {
                 localStorage.setItem(
                     'users',
                     JSON.stringify([...users, newUser])
                 );
                 // updating the state
                 dispatch({ type: 'user/singup', payload: newUser });
+                setHasAccount(isExistedEmail);
+                handleStates();
+            } else if (!isExistedEmail && isExistedUserName) {
+                setError(
+                    'The username has already been taken, please try another one'
+                );
+                localStorage.setItem('users', JSON.stringify([...users]));
+                setUserName('');
             } else {
                 localStorage.setItem('users', JSON.stringify([...users]));
+                setHasAccount(isExistedEmail);
+                handleStates();
             }
 
-            setHasAccount(isExisted);
-            handleStates();
             return;
         } else {
             // If there are no users in the local storage so a new local storage is created 'users',
@@ -70,7 +85,7 @@ function Signup() {
     return (
         <div className="h-screen bg flex flex-col sm:flex-row relative">
             {hasAccount === false && (
-                <Message type="singup" dispatch={dispatch}>
+                <Message type="signup" dispatch={dispatch}>
                     You've signed up successfully!
                 </Message>
             )}
@@ -88,11 +103,15 @@ function Signup() {
                             onChange={e => {
                                 setUserName(e.target.value);
                                 setHasAccount(null);
+                                setError('');
                             }}
                             placeholder="Username..."
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
+                        {error !== '' && (
+                            <Message type="error">{error}</Message>
+                        )}
                     </div>
                     <div>
                         <input
@@ -101,21 +120,14 @@ function Signup() {
                             onChange={e => {
                                 setEmail(e.target.value);
                                 setHasAccount(null);
+                                setError('');
                             }}
                             placeholder="Email..."
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
                         {hasAccount && (
-                            <p className="mt-5 text-red text-small">
-                                the email has been used before!{' '}
-                                <span
-                                    className="text-blue-50 underline font-medium cursor-pointer"
-                                    onClick={() => navigate('/login')}
-                                >
-                                    Log in
-                                </span>
-                            </p>
+                            <Message type='error'>the email has been used before!</Message>
                         )}
                     </div>
                     <div>
@@ -125,6 +137,7 @@ function Signup() {
                             onChange={e => {
                                 setPassword(e.target.value);
                                 setHasAccount(null);
+                                setError('');
                             }}
                             placeholder="Password..."
                             required

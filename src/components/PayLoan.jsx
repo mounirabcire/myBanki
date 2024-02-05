@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
+import { useState } from 'react';
+import Message from './Message';
 
 function PayLoan() {
-    const { dispatch, loan } = useUser();
+    const { dispatch, loan, balance } = useUser();
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     function handlePayLoan() {
+        if (balance < loan) {
+            setError('Your current balance is too low');
+            return;
+        }
+
         dispatch({ type: 'account/payLoan' });
         navigate('/dashboard');
     }
@@ -14,6 +22,7 @@ function PayLoan() {
         <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
             <h2 className="text-h3 ">Pay Loan</h2>
             <div className="space-y-10">
+                {error !== '' && <Message type="error">{error}</Message>}
                 <input
                     type="button"
                     value={`Pay Loan ${loan > 0 ? `$${loan}` : ''}`}

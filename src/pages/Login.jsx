@@ -3,6 +3,7 @@ import bg1 from '../../public/login.png';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserProvider';
 import { useAuth } from '../contexts/AuthenticationProvider';
+import Message from '../components/Message';
 
 function Login() {
     // this function will be called in the first render, (lazy evaluation)
@@ -92,13 +93,7 @@ function Login() {
                             <p className="mt-5 text-red text-small">
                                 {userName !== ''
                                     ? `${userName} doesn't exist!`
-                                    : "You don't have an account!"}{' '}
-                                <span
-                                    className="text-blue-50 underline font-medium cursor-pointer"
-                                    onClick={() => navigate('/singup')}
-                                >
-                                    Sing up
-                                </span>
+                                    : "You don't have an account!"}
                             </p>
                         )}
                     </div>
@@ -116,15 +111,7 @@ function Login() {
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
                         {passwordErr !== '' && (
-                            <p className="mt-5 text-red text-small">
-                                {passwordErr}
-                                {/* <span
-                                    className="text-blue-50 underline font-medium cursor-pointer"
-                                    onClick={() => navigate('/singup')}
-                                >
-                                    password forgotten?
-                                </span> */}
-                            </p>
+                            <Message type="error">{passwordErr}</Message>
                         )}
                     </div>
                     <div>
