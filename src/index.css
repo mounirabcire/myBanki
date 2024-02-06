@@ -50,4 +50,10 @@
     .news{
         height: calc(100vh - 78px - 33px - 285px);
     }
+
+    @media screen and(max-width: 767px) {
+        /* .transactions{
+            height: calc(300px);
+        } */
+    }
 }

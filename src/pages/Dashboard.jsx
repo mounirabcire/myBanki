@@ -175,7 +175,7 @@ function Dashboard() {
                             ) : (
                                 transactions.map(trans => (
                                     <Transaction
-                                        key={crypto.randomUUID()}
+                                        key={Math.random().toString(36).substring(2) + Date.now().toString(36)}
                                         trans={trans}
                                     />
                                 ))

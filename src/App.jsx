@@ -18,6 +18,7 @@ function App() {
     // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard).
     // TODO: add a costom hook where we can update adn get the local storage.
     // FIXME: reverse the transactions array
+    // FIXME: when logging in or signing in we have to remove the additional spaces from the string.
     
     return (
         <UserProvider>
