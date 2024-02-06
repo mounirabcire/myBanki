@@ -23,7 +23,7 @@ function Deposit() {
 
     return (
         <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
-            <h2 className="text-h3 ">Deposit</h2>
+            <h2 className="lg:text-h3 text-h4 ">Deposit</h2>
             <div className="space-y-10">
                 <input
                     type="number"

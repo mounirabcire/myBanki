@@ -42,4 +42,12 @@
     .titles {
         -webkit-text-stroke: 1px #4C84FF;
     }
+
+    .transactions{
+        height: calc(100vh - 78px - 33px);
+    }
+
+    .news{
+        height: calc(100vh - 78px - 33px - 285px);
+    }
 }

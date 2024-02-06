@@ -49,7 +49,6 @@ export default {
         extend: {
             backgroundImage: {
                 'hero-section': "url('./public/bg 1.png')",
-                
             },
         },
     },
