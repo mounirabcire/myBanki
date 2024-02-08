@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Contact from '../components/Contact';
 import Features from '../components/Features';
 import Header from '../components/Header';

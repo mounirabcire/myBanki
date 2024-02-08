@@ -96,7 +96,6 @@ function Dashboard() {
                                 />
                             )}
                         </AnimatePresence>
-                        
                     </div>
                     <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10">
                         <h2 className="lg:text-h3 text-h4 ">Our News</h2>
@@ -159,11 +158,17 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="px-15 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold ">
+                <div className="px-15 py-15 w-full bg text-white flex items-center justify-between fixed bottom-[0px] left-[0px] text-small font-semibold ">
                     <div className="flex items-center gap-60">
                         <p>In: ${posAmount}</p>
                         <p>Out: ${negAmount}</p>
                         <p>Sort</p>
+                        <Link
+                            className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
+                            to="/"
+                        >
+                            Back Home
+                        </Link>
                     </div>
                     <div>
                         <p className="space-x-5">

@@ -37,7 +37,7 @@ function Contact() {
                     </ul>
                 </div>
             </div>
-            <div class="mt-30 text-small font-semibold text-center">
+            <div className="mt-30 text-small font-semibold text-center">
                 <p>&copy; 2024 myBanki. All rights reserved.</p>
             </div>
         </footer>

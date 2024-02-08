@@ -31,7 +31,7 @@ function Header() {
                         className="lg:hidden text-white text-h3"
                         onClick={handleMenuBar}
                     >
-                        <i class="ri-menu-4-line"></i>
+                        <i className="ri-menu-4-line"></i>
                     </div>
                     <div className="hidden lg:block">
                         <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
@@ -56,7 +56,7 @@ function Header() {
                         <div className="space-x-15">
                             <Link
                                 className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
-                                to="dashboard"
+                                to="signup"
                             >
                                 Get Started
                             </Link>

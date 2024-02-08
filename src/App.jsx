@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { UserProvider } from './contexts/UserProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
@@ -13,17 +13,23 @@ import Deposit from './components/Deposit';
 import Withdraw from './components/Withdraw';
 import RequestLoan from './components/RequestLoan';
 import PayLoan from './components/PayLoan';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
     // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard).
     // TODO: add a costom hook where we can update adn get the local storage.
     // FIXME: Adding a button to navigate back to the home page in the dashboard
-    
+    const location = useLocation();
+
     return (
         <UserProvider>
             <AuthenticationProvider>
-                <BrowserRouter>
-                    <Routes>
+                <AnimatePresence
+                // // initial={false}
+                // // exitBeforeEnter
+                // mode="wait"
+                >
+                    <Routes location={location} key={location.pathname}>
                         <Route index element={<Homepage />} />
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
@@ -47,10 +53,9 @@ function App() {
                             />
                             <Route path="loan/pay" element={<PayLoan />} />
                         </Route>
-
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>
-                </BrowserRouter>
+                </AnimatePresence>
             </AuthenticationProvider>
         </UserProvider>
     );

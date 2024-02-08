@@ -122,6 +122,12 @@ function DashboardMobile() {
                         handleCloseAction={handleCloseAction}
                     />
                 )}
+                <Link
+                    className="bg-blue-50 px-10 py-10 inline-block rounded-normal font-bold text-white"
+                    to="/"
+                >
+                    Back Home
+                </Link>
             </div>
             <div>
                 <Outlet />

@@ -5,7 +5,7 @@ function MenuBar({ onClick, handleCloseMenuBar }) {
         <div className="h-screen w-screen bg fixed z-30">
             <div className=" h-90 flex flex-col justify-center items-center relative">
                 <span className="text-h3 cursor-pointer" onClick={onClick}>
-                    <i class="ri-close-fill text-white"></i>
+                    <i className="ri-close-fill text-white"></i>
                 </span>
             </div>
             <div className="menu-bar-links  flex flex-col justify-center items-center">
