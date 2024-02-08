@@ -51,6 +51,12 @@
         height: calc(100vh - 78px - 33px - 285px);
     }
 
+    .action{
+        @apply rounded-normal;
+        @apply shadow-md;
+        @apply hover:shadow-lg;
+    }
+
     @media screen and (max-width: 767px) {
         div.action {
             border: none;

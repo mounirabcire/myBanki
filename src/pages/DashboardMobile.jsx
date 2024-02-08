@@ -50,7 +50,7 @@ function DashboardMobile() {
             <div
                 className={`w-full h-[100vh] space-y-30 fixed top-[0px] ${
                     isOpened ? 'left-[0px]' : 'left-[-100vw]'
-                } transition-all bg-white z-30`}
+                } transition-all bg-white z-40`}
             >
                 <div
                     onClick={() => setIsOpened(pre => !pre)}
@@ -102,7 +102,7 @@ function DashboardMobile() {
                         ? 'No transactions have been made yet!'
                         : `Last action: ${
                               transactions[transactions.length - 1].action
-                          } $${numberFormat(
+                          } / $${numberFormat(
                               transactions[transactions.length - 1].amount
                           )}`}
                 </p>
@@ -183,14 +183,14 @@ function DashboardMobile() {
                     </p>
                 </div>
             </div>
-            <div className="px-5 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold z-50">
-                <div className="flex items-center gap-5">
+            <div className="px-5 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold">
+                <div className="flex items-center gap-15">
                     <p>In: ${posAmount}</p>
                     <p>Out: ${negAmount}</p>
                     <p>Sort</p>
                 </div>
                 <div>
-                    <p className="space-x-[2px]">
+                    <p className="space-x-[1px]">
                         <span>{hours < 10 ? '0' + hours : hours}</span>
                         <span>:</span>
                         <span>{minutes < 10 ? '0' + minutes : minutes}</span>

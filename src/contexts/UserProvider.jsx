@@ -67,13 +67,13 @@ function reducer(state, action) {
                 ...state,
                 balance: state.balance + action.payload,
                 transactions: [
-                    ...state.transactions,
                     {
                         amount: action.payload,
                         action: 'Deposit',
                         date: new Date().toDateString(),
                         time: new Date().toLocaleTimeString(),
                     },
+                    ...state.transactions,
                 ],
             };
             updateLocalStorage('users', state.userName, stateUpdatedDeposit);
@@ -89,13 +89,13 @@ function reducer(state, action) {
                         ? state.balance
                         : state.balance - action.payload,
                 transactions: [
-                    ...state.transactions,
                     {
                         amount: action.payload,
                         action: 'Withdraw',
                         date: new Date().toDateString(),
                         time: new Date().toLocaleTimeString(),
                     },
+                    ...state.transactions,
                 ],
             };
             updateLocalStorage('users', state.userName, stateUpdatedWithdraw);
@@ -111,13 +111,13 @@ function reducer(state, action) {
                 loan: action.payload,
                 balance: state.balance + action.payload,
                 transactions: [
-                    ...state.transactions,
                     {
                         amount: action.payload,
                         action: 'Request loan',
                         date: new Date().toDateString(),
                         time: new Date().toLocaleTimeString(),
                     },
+                    ...state.transactions,
                 ],
             };
             updateLocalStorage(
@@ -136,13 +136,13 @@ function reducer(state, action) {
                 loan: 0,
                 balance: state.balance - state.loan,
                 transactions: [
-                    ...state.transactions,
                     {
                         amount: state.loan,
                         action: 'Pay loan',
                         date: new Date().toDateString(),
                         time: new Date().toLocaleTimeString(),
                     },
+                    ...state.transactions,
                 ],
             };
             updateLocalStorage('users', state.userName, stateUpdatedPayLoan);

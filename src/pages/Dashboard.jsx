@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Transaction from '../components/Transaction';
 import { numberFormat } from '../utils/numberFormat';
 import DashboardMobile from './DashboardMobile';
+import Message from '../components/Message';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
@@ -33,6 +34,7 @@ function Dashboard() {
         setDoAction(false);
     }
 
+    // displaying the current time
     // useEffect(() => {
     //     const timer = setInterval(() => {
     //         setCurrentTime(new Date());
@@ -51,11 +53,15 @@ function Dashboard() {
     //     })
     // );
 
+    // diplaying an action message
+    useEffect(() => {}, []);
+
     return (
         <>
             <section className=" px-10 py-30 min-h-screen text hidden md:flex items-start gap-30 relative ">
+                <Message type="action">You have successfully deposited</Message>
                 <div className="space-y-15 w-[350px]">
-                    <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
+                    <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                         <h4 className="text-h4">{userName.toUpperCase()}</h4>
                         <p>
                             <b>${numberFormat(balance)}</b>
@@ -71,7 +77,7 @@ function Dashboard() {
                                 : `Last action: ${
                                       transactions[transactions.length - 1]
                                           .action
-                                  } $${numberFormat(
+                                  } / $${numberFormat(
                                       transactions[transactions.length - 1]
                                           .amount
                                   )}`}
@@ -129,7 +135,7 @@ function Dashboard() {
                             </ul>
                         </div>
                     </div>
-                    <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
+                    <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10">
                         <h2 className="lg:text-h3 text-h4 ">Our News</h2>
                         <div className="news overflow-y-scroll">
                             <p>
@@ -167,7 +173,7 @@ function Dashboard() {
                 <div className="space-y-15 w-[300px] ">
                     <Outlet />
 
-                    <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
+                    <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10">
                         <h2 className="lg:text-h3 text-h4 ">Savings</h2>
                         <div>
                             <p className="text-small">
@@ -176,10 +182,10 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="space-y-15 w-auto ">
-                    <div className="transactions p-15 pb-60 border-[1px] border-solid border-blue-10 overflow-hidden">
+                <div className="space-y-15 w-1/2 ">
+                    <div className="transactions rounded-normal shadow-md hover:shadow-lg p-15 pb-60 overflow-hidden">
                         <h2 className="lg:text-h3 text-h4">My Transactions</h2>
-                        <div className="h-[100%] space-y-5  overflow-y-scroll">
+                        <div className="h-[100%] space-y-5  overflow-y-scroll px-10 bg text-white">
                             {transactions.length === 0 ? (
                                 <p className="text-small">No Transactions</p>
                             ) : (

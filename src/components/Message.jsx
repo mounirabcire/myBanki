@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-function Message({ children, type }) {
+function Message({ children, type, actionColor }) {
     const navigate = useNavigate();
 
     function hanndleCloseMessage() {
@@ -24,6 +24,13 @@ function Message({ children, type }) {
 
     if (type === 'error')
         return <p className="mt-5 text-red text-small">{children}</p>;
+
+    if (type === 'action')
+        return (
+            <div className="px-15 py-10 fixed top-15 left-1/2 translate-x-[-50%] bg-green text-white rounded-large z-30">
+                {children}
+            </div>
+        );
 }
 
 export default Message;
