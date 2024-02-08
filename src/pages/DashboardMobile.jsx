@@ -44,8 +44,9 @@ function DashboardMobile() {
         return () => clearInterval(timer);
     }, []);
 
+    // console.log('rendering')
     return (
-        <section className="px-10 py-30 min-h-screen text md:hidden relative overflow-x-hidden space-y-30">
+        <section className="px-10 py-30 min-h-screen text md:hidden relative overflow-x-hidden space-y-15">
             <div
                 className={`w-full h-[100vh] space-y-30 fixed top-[0px] ${
                     isOpened ? 'left-[0px]' : 'left-[-100vw]'
@@ -65,9 +66,9 @@ function DashboardMobile() {
                         <i className="ri-arrow-right-line text-white"></i>
                     )}
                 </div>
-                <div className="transactions space-y-5 overflow-hidden">
+                <div className="transactions pb-60 h-full overflow-hidden">
                     <h2 className="p-15 lg:text-h3 text-h4">My Transactions</h2>
-                    <div className="p-15 h-[100%] space-y-5 flex-col items-start  overflow-y-scroll bg text-white">
+                    <div className="h-[80%] p-15 space-y-10 overflow-y-scroll bg text-white">
                         {transactions.length === 0 ? (
                             <p className="text-small">No Transactions</p>
                         ) : (
@@ -92,7 +93,7 @@ function DashboardMobile() {
                     <b>${numberFormat(balance)}</b>
                 </p>
                 {loan > 0 && (
-                    <p className="loan text-small">
+                    <p className="loan text-small text-red">
                         You have a loan of <b>${numberFormat(loan)}</b>
                     </p>
                 )}
@@ -179,6 +180,23 @@ function DashboardMobile() {
                         voluptatum debitis quo dolor suscipit cumque atque
                         corporis explicabo neque cum a reiciendis mollitia in
                         vel dolorum nemo non.
+                    </p>
+                </div>
+            </div>
+            <div className="px-5 py-30 w-full bg text-white flex justify-between fixed bottom-[0px] left-[0px] text-small font-semibold z-50">
+                <div className="flex items-center gap-5">
+                    <p>In: ${posAmount}</p>
+                    <p>Out: ${negAmount}</p>
+                    <p>Sort</p>
+                </div>
+                <div>
+                    <p className="space-x-[2px]">
+                        <span>{hours < 10 ? '0' + hours : hours}</span>
+                        <span>:</span>
+                        <span>{minutes < 10 ? '0' + minutes : minutes}</span>
+                        <span>:</span>
+                        <span>{seconds < 10 ? '0' + seconds : seconds}</span>
+                        <span>{time}</span>
                     </p>
                 </div>
             </div>

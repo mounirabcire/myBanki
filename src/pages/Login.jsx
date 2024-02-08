@@ -44,7 +44,7 @@ function Login() {
 
         // check if the user exists based on the userName
         const isExisted =
-            users?.find(user => user.userName === userName) ?? false;
+            users?.find(user => user.userName === userName.trim()) ?? false;
 
         if (isExisted !== false) {
             // the user is Existed, so checking the password
@@ -73,7 +73,7 @@ function Login() {
     }, [isAuthenticated, navigate]);
 
     return (
-        <div className="h-screen flex flex-col sm:flex-row">
+        <div className="min-h-screen sm:h-screen flex flex-col sm:flex-row">
             <div className="h-1/2 p-30 flex flex-col justify-center items-center sm:w-1/2 sm:h-full">
                 <h2 className="mb-30 text-center text-h2 font-bold">Log in</h2>
                 <form className="mb-30 space-y-15 w-[300px] ">
@@ -102,7 +102,7 @@ function Login() {
                             type="password"
                             value={password}
                             onChange={e => {
-                                setPassword(e.target.value);
+                                setPassword(e.target.value.trim());
                                 setHasAccount(null);
                                 setPasswordErr('');
                             }}

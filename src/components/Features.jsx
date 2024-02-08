@@ -8,10 +8,10 @@ import icon6 from '../../public/icon-4.svg';
 function Features() {
     return (
         <section id='features' className="min-h-screen px-10 py-30 sm:px-30 lg:px-[80px] relative overflow-x-hidden">
-            <h1 className="titles text-[78px] sm:text-[170px] lg:text-[200px] text-gray-30 opacity-50 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] absolute z-[-1] ">
+            <h1 className="titles text-[65px] sm:text-[170px] lg:text-[200px] text-gray-30 opacity-50 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] absolute z-[-1] ">
                 FEATURES
             </h1>
-            <div className="flex flex-wrap gap-30 justify-center items-start">
+            <div className="lg:min-h-[100vh] flex flex-wrap gap-15 justify-center items-center">
                 <div className="max-w-[275px] p-5 h-[450px] bg-[#ffffff65] rounded-normal border-[1px] shadow-2xl border-blue-10  flex flex-col justify-center items-center">
                     <div>
                         <img className="w-60" src={icon2} alt="Icon" />

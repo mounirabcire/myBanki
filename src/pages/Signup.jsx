@@ -28,9 +28,9 @@ function Signup() {
         if (!userName || !email || !password) return;
 
         const newUser = {
-            userName,
-            email,
-            password,
+            userName: userName.trim(),
+            email: email.trim(),
+            password: password.trim(),
             balance: 0,
             loan: 0,
             transactions: [],
@@ -83,7 +83,7 @@ function Signup() {
     }
 
     return (
-        <div className="h-screen bg flex flex-col sm:flex-row relative">
+        <div className="min-h-screen sm:h-screen bg flex flex-col sm:flex-row relative">
             {hasAccount === false && (
                 <Message type="signup" dispatch={dispatch}>
                     You've signed up successfully!
@@ -127,7 +127,9 @@ function Signup() {
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />
                         {hasAccount && (
-                            <Message type='error'>the email has been used before!</Message>
+                            <Message type="error">
+                                the email has been used before!
+                            </Message>
                         )}
                     </div>
                     <div>
@@ -135,7 +137,7 @@ function Signup() {
                             type="password"
                             value={password}
                             onChange={e => {
-                                setPassword(e.target.value);
+                                setPassword(e.target.value.trim());
                                 setHasAccount(null);
                                 setError('');
                             }}

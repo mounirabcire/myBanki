@@ -5,27 +5,33 @@ import MenuBar from '../components/MenuBar';
 import { Link } from 'react-router-dom';
 
 function Header() {
-    // Hooks
     const [isVisible, SetIsVisible] = useState(false);
 
-    // Functions
     function handleMenuBar() {
         SetIsVisible(pre => !pre);
     }
+
+    function handleCloseMenuBar() {
+        SetIsVisible(false);
+    }
+
     return (
         <header className="min-h-screen bg-hero-section bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
-            {isVisible && <MenuBar onClick={handleMenuBar} />}
+            {isVisible && (
+                <MenuBar
+                    onClick={handleMenuBar}
+                    handleCloseMenuBar={handleCloseMenuBar}
+                />
+            )}
             <div className="h-full px-10 pt-30 sm:px-30 lg:px-[80px] bg-[#00000080]">
-                <nav className="flex justify-between items-center">
+                <nav className="flex justify-between items-center ">
                     <Logo />
                     <PagesLinks />
                     <div
-                        className="space-y-5 cursor-pointer lg:hidden"
+                        className="lg:hidden text-white text-h3"
                         onClick={handleMenuBar}
                     >
-                        <div className="w-[25px] h-[2px] bg-white rounded-normal"></div>
-                        <div className="w-[25px] h-[2px] bg-white rounded-normal"></div>
-                        <div className="w-[25px] h-[2px] bg-white rounded-normal"></div>
+                        <i class="ri-menu-4-line"></i>
                     </div>
                     <div className="hidden lg:block">
                         <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
@@ -47,13 +53,19 @@ function Header() {
                                 Manage finance by security and joy.
                             </h4>
                         </div>
-                        <div className="space-x-30">
-                            <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
-                                <Link to="dashboard">Get Started</Link>
-                            </button>
-                            <button className="border bg-transparent px-[24px] py-15 text-white rounded-normal font-bold ">
-                                <a href="#features">See Features</a>
-                            </button>
+                        <div className="space-x-15">
+                            <Link
+                                className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
+                                to="dashboard"
+                            >
+                                Get Started
+                            </Link>
+                            <a
+                                href="#features"
+                                className="border bg-transparent px-[20px] py-15 inline-block text-white rounded-normal font-bold "
+                            >
+                                See Features
+                            </a>
                         </div>
                     </div>
                 </section>

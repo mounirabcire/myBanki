@@ -33,13 +33,23 @@ function Dashboard() {
         setDoAction(false);
     }
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         setCurrentTime(new Date());
+    //     }, 1000);
 
-        return () => clearInterval(timer);
-    }, []);
+    //     return () => clearInterval(timer);
+    // }, []);
+
+    // console.log(
+    //     transactions.sort((a, b) => {
+    //         const x = a.amount;
+    //         const y = b.amount;
+
+    //         if (x < y) return -1;
+    //         if (x > y) return 1;
+    //     })
+    // );
 
     return (
         <>
@@ -51,7 +61,7 @@ function Dashboard() {
                             <b>${numberFormat(balance)}</b>
                         </p>
                         {loan > 0 && (
-                            <p className="loan text-small">
+                            <p className="loan text-small text-red">
                                 You have a loan of <b>${numberFormat(loan)}</b>
                             </p>
                         )}
@@ -167,17 +177,14 @@ function Dashboard() {
                     </div>
                 </div>
                 <div className="space-y-15 w-auto ">
-                    <div className="transactions p-15 space-y-5 border-[1px] border-solid border-blue-10 overflow-hidden">
+                    <div className="transactions p-15 pb-60 border-[1px] border-solid border-blue-10 overflow-hidden">
                         <h2 className="lg:text-h3 text-h4">My Transactions</h2>
                         <div className="h-[100%] space-y-5  overflow-y-scroll">
                             {transactions.length === 0 ? (
                                 <p className="text-small">No Transactions</p>
                             ) : (
-                                transactions.map(trans => (
-                                    <Transaction
-                                        key={Math.random().toString(36).substring(2) + Date.now().toString(36)}
-                                        trans={trans}
-                                    />
+                                transactions.map((trans, i) => (
+                                    <Transaction key={i} trans={trans} />
                                 ))
                             )}
                         </div>

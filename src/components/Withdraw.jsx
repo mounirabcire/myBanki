@@ -30,11 +30,12 @@ function Withdraw() {
 
     return (
         <div>
-            <div className="p-15 space-y-5 border-[1px] border-solid border-blue-10">
+            <div className="action p-15 space-y-5 border-[1px] border-solid border-blue-10">
                 <h2 className="lg:text-h3 text-h4 ">Withdraw</h2>
                 <div className="space-y-10">
                     <input
                         type="number"
+                        placeholder = 'Amount...'
                         value={amount}
                         onChange={e => {
                             setAmount(Number(e.target.value));
