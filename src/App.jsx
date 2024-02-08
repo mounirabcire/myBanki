@@ -17,6 +17,7 @@ import PayLoan from './components/PayLoan';
 function App() {
     // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard).
     // TODO: add a costom hook where we can update adn get the local storage.
+    // FIXME: Adding a button to navigate back to the home page in the dashboard
     
     return (
         <UserProvider>

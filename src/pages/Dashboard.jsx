@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import Transaction from '../components/Transaction';
 import { numberFormat } from '../utils/numberFormat';
 import DashboardMobile from './DashboardMobile';
-import Message from '../components/Message';
+import Actions from '../components/Actions';
+import { AnimatePresence } from 'framer-motion';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
@@ -53,13 +54,9 @@ function Dashboard() {
     //     })
     // );
 
-    // diplaying an action message
-    useEffect(() => {}, []);
-
     return (
         <>
             <section className=" px-10 py-30 min-h-screen text hidden md:flex items-start gap-30 relative ">
-                <Message type="action">You have successfully deposited</Message>
                 <div className="space-y-15 w-[350px]">
                     <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                         <h4 className="text-h4">{userName.toUpperCase()}</h4>
@@ -91,49 +88,15 @@ function Dashboard() {
                             </span>{' '}
                             <span>&rarr;</span>
                         </p>
-                        <div
-                            className={`h-full px-10 py-15 rounded-l-normal absolute top-[-5px] right-[0px] bg text-white z-10 ${
-                                !doAction && 'hidden'
-                            } `}
-                        >
-                            <ul className=" space-y-5 flex flex-col justify-center items-start ">
-                                <li className="underline capitalize cursor-pointer">
-                                    <Link
-                                        to={'deposit'}
-                                        onClick={handleCloseAction}
-                                    >
-                                        deposit <span>&rarr;</span>
-                                    </Link>
-                                </li>
-                                <li className="underline capitalize cursor-pointer">
-                                    <Link
-                                        to={'withdraw'}
-                                        onClick={handleCloseAction}
-                                    >
-                                        withdraw <span>&rarr;</span>
-                                    </Link>
-                                </li>
-                                <li className="underline capitalize cursor-pointer">
-                                    <Link
-                                        to={'loan/request'}
-                                        onClick={handleCloseAction}
-                                    >
-                                        request loan <span>&rarr;</span>
-                                    </Link>
-                                </li>
-
-                                {loan > 0 && (
-                                    <li className="underline capitalize cursor-pointer">
-                                        <Link
-                                            to={'loan/pay'}
-                                            onClick={handleCloseAction}
-                                        >
-                                            pay loan back <span>&rarr;</span>
-                                        </Link>
-                                    </li>
-                                )}
-                            </ul>
-                        </div>
+                        <AnimatePresence>
+                            {doAction && (
+                                <Actions
+                                    loan={loan}
+                                    handleCloseAction={handleCloseAction}
+                                />
+                            )}
+                        </AnimatePresence>
+                        
                     </div>
                     <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10">
                         <h2 className="lg:text-h3 text-h4 ">Our News</h2>

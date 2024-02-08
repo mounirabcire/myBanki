@@ -6,6 +6,7 @@ import { numberFormat } from '../utils/numberFormat';
 
 import Transaction from '../components/Transaction';
 import 'remixicon/fonts/remixicon.css';
+import Actions from '../components/Actions';
 
 function DashboardMobile() {
     const [isOpened, setIsOpened] = useState(false);
@@ -115,43 +116,12 @@ function DashboardMobile() {
                     </span>{' '}
                     <span>&rarr;</span>
                 </p>
-                <div
-                    className={`h-full px-10 py-15 rounded-l-normal absolute top-[-5px] right-[0px] bg text-white z-30 ${
-                        !doAction && 'hidden'
-                    } `}
-                >
-                    <ul className=" space-y-5 flex flex-col justify-center items-start ">
-                        <li className="underline capitalize cursor-pointer">
-                            <Link to={'deposit'} onClick={handleCloseAction}>
-                                deposit <span>&rarr;</span>
-                            </Link>
-                        </li>
-                        <li className="underline capitalize cursor-pointer">
-                            <Link to={'withdraw'} onClick={handleCloseAction}>
-                                withdraw <span>&rarr;</span>
-                            </Link>
-                        </li>
-                        <li className="underline capitalize cursor-pointer">
-                            <Link
-                                to={'loan/request'}
-                                onClick={handleCloseAction}
-                            >
-                                request loan <span>&rarr;</span>
-                            </Link>
-                        </li>
-
-                        {loan > 0 && (
-                            <li className="underline capitalize cursor-pointer">
-                                <Link
-                                    to={'loan/pay'}
-                                    onClick={handleCloseAction}
-                                >
-                                    pay loan back <span>&rarr;</span>
-                                </Link>
-                            </li>
-                        )}
-                    </ul>
-                </div>
+                {doAction && (
+                    <Actions
+                        loan={loan}
+                        handleCloseAction={handleCloseAction}
+                    />
+                )}
             </div>
             <div>
                 <Outlet />
@@ -165,7 +135,7 @@ function DashboardMobile() {
 
             <div className="p-15 space-y-5">
                 <h2 className="lg:text-h3 text-h4 ">Our News</h2>
-                <div className="news overflow-y-scroll">
+                <div className="news pb-60 overflow-y-scroll">
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Facilis, earum. Nisi reiciendis doloribus itaque nihil
