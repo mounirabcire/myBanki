@@ -9,6 +9,7 @@ const initialeState = {
     balance: 0,
     loan: 0,
     transactions: [],
+    savings: [],
 };
 
 function getUserFromLoacalStorage(key, oldUsername) {
@@ -148,6 +149,16 @@ function reducer(state, action) {
             updateLocalStorage('users', state.userName, stateUpdatedPayLoan);
 
             return { ...stateUpdatedPayLoan };
+
+        case 'account/saving':
+            const newSaving = { ...action.payload };
+            const stateUpdatedSavings = {
+                ...state,
+                savings: [newSaving, ...state.savings],
+            };
+            updateLocalStorage('users', state.userName, stateUpdatedSavings);
+
+            return { ...stateUpdatedSavings };
 
         default:
             return { ...state };

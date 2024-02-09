@@ -7,13 +7,16 @@ import { numberFormat } from '../utils/numberFormat';
 import Transaction from '../components/Transaction';
 import 'remixicon/fonts/remixicon.css';
 import Actions from '../components/Actions';
+import SavingItem from '../components/SavingItem';
+import Message from '../components/Message';
 
 function DashboardMobile() {
     const [isOpened, setIsOpened] = useState(false);
+    const [addSaving, setAddSaving] = useState(false);
     const [doAction, setDoAction] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date());
     const user = useUser();
-    const { userName, balance, transactions, loan } = user;
+    const { userName, balance, transactions, loan, savings } = user;
     const posAmount = transactions.reduce(
         (acc, tran) =>
             tran.action === 'Deposit' || tran.action === 'Request loan'
@@ -48,6 +51,9 @@ function DashboardMobile() {
     // console.log('rendering')
     return (
         <section className="px-10 py-30 min-h-screen text md:hidden relative overflow-x-hidden space-y-15">
+            {addSaving && (
+                <Message type="saving" onClick={() => setAddSaving(false)} />
+            )}
             <div
                 className={`w-full h-[100vh] space-y-30 fixed top-[0px] ${
                     isOpened ? 'left-[0px]' : 'left-[-100vw]'
@@ -134,8 +140,23 @@ function DashboardMobile() {
             </div>
             <div className="p-15 space-y-5">
                 <h2 className="lg:text-h3 text-h4 ">Savings</h2>
-                <div>
-                    <p className="text-small">Your saving card is empty</p>
+                <div className="space-y-5">
+                    {savings.length === 0 && (
+                        <p className="text-small">Your saving card is empty</p>
+                    )}
+                    {savings.length > 0 && (
+                        <div className="space-y-10 overflow-y-scroll h-[170px] ">
+                            {savings.map((saving, i) => (
+                                <SavingItem saving={saving} key={i} />
+                            ))}
+                        </div>
+                    )}
+                    <div
+                        onClick={() => setAddSaving(pre => !pre)}
+                        className={`w-[25px] rounded-normal cursor-pointer bg text-white flex justify-center items-center`}
+                    >
+                        <i className="ri-add-line"></i>
+                    </div>
                 </div>
             </div>
 

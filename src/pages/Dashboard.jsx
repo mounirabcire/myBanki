@@ -6,12 +6,15 @@ import { numberFormat } from '../utils/numberFormat';
 import DashboardMobile from './DashboardMobile';
 import Actions from '../components/Actions';
 import { AnimatePresence } from 'framer-motion';
+import Message from '../components/Message';
+import SavingItem from '../components/SavingItem';
 
 function Dashboard() {
     const [doAction, setDoAction] = useState(false);
+    const [addSaving, setAddSaving] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date());
     const user = useUser();
-    const { userName, balance, transactions, loan } = user;
+    const { userName, balance, transactions, loan, savings } = user;
     const posAmount = transactions.reduce(
         (acc, tran) =>
             tran.action === 'Deposit' || tran.action === 'Request loan'
@@ -35,6 +38,8 @@ function Dashboard() {
         setDoAction(false);
     }
 
+    console.log(savings)
+
     // displaying the current time
     // useEffect(() => {
     //     const timer = setInterval(() => {
@@ -57,6 +62,12 @@ function Dashboard() {
     return (
         <>
             <section className=" px-10 py-30 min-h-screen text hidden md:flex items-start gap-30 relative ">
+                {addSaving && (
+                    <Message
+                        type="saving"
+                        onClick={() => setAddSaving(false)}
+                    />
+                )}
                 <div className="space-y-15 w-[350px]">
                     <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                         <h4 className="text-h4">{userName.toUpperCase()}</h4>
@@ -132,15 +143,30 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="space-y-15 w-[300px] ">
+                <div className="space-y-15 w-[400px] ">
                     <Outlet />
 
-                    <div className="rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10">
+                    <div className="savings rounded-normal shadow-md hover:shadow-lg p-15 space-y-5 border-[1px] border-solid border-blue-10 relative">
                         <h2 className="lg:text-h3 text-h4 ">Savings</h2>
-                        <div>
-                            <p className="text-small">
-                                Your saving card is empty
-                            </p>
+                        <div className="space-y-5">
+                            {savings.length === 0 && (
+                                <p className="text-small">
+                                    Your saving card is empty
+                                </p>
+                            )}
+                            {savings.length > 0 && (
+                                <div className="space-y-10 overflow-y-scroll h-[170px] ">
+                                    {savings.map((saving, i) => (
+                                        <SavingItem saving={saving} key={i} />
+                                    ))}
+                                </div>
+                            )}
+                            <div
+                                onClick={() => setAddSaving(pre => !pre)}
+                                className={`w-[25px] rounded-normal cursor-pointer bg text-white flex justify-center items-center`}
+                            >
+                                <i className="ri-add-line"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

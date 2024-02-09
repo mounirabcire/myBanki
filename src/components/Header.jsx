@@ -56,7 +56,7 @@ function Header() {
                         <div className="space-x-15">
                             <Link
                                 className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
-                                to="signup"
+                                to="dashboard"
                             >
                                 Get Started
                             </Link>
