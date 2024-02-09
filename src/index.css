@@ -68,7 +68,8 @@
     progress {
         appearance: none; /* Remove default appearance */
         border: none; /* Remove border */
-        @apply bg; /* Background color of the progress bar */
+        @apply bg-white;
+        @apply border-[1px] border-solid; /* Background color of the progress bar */
         @apply rounded-normal ;/* Rounded corners */
         overflow: hidden; /* Hide overflowing content */
     }
@@ -81,7 +82,8 @@
 
     /* Style the progress bar's background (unfilled part) */
     progress::-webkit-progress-bar {
-        @apply bg; /* Background color of the progress bar */
+        @apply bg-white;
+        @apply border-[1px] border-solid; /* Background color of the progress bar */
         @apply rounded-normal ;/* Rounded corners */;
     }
 

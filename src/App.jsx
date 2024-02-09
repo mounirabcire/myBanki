@@ -1,9 +1,4 @@
-import {
-    BrowserRouter,
-    Navigate,
-    Route,
-    Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { UserProvider } from './contexts/UserProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
@@ -20,15 +15,11 @@ import RequestLoan from './components/RequestLoan';
 import PayLoan from './components/PayLoan';
 
 function App() {
-    // TODO: if the user do an action a message will be displayed at the bottom of the page (Dashboard).
-    // TODO: add a costom hook where we can update adn get the local storage.
-    // FIXME: Adding a button to navigate back to the home page in the dashboard
-
     return (
         <UserProvider>
             <AuthenticationProvider>
                 <BrowserRouter>
-                    <Routes >
+                    <Routes>
                         <Route index element={<Homepage />} />
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />

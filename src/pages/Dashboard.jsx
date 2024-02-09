@@ -38,8 +38,6 @@ function Dashboard() {
         setDoAction(false);
     }
 
-    console.log(savings)
-
     // displaying the current time
     // useEffect(() => {
     //     const timer = setInterval(() => {
@@ -155,7 +153,7 @@ function Dashboard() {
                                 </p>
                             )}
                             {savings.length > 0 && (
-                                <div className="space-y-10 overflow-y-scroll h-[170px] ">
+                                <div className="space-y-10 overflow-hidden overflow-y-scroll h-[170px] ">
                                     {savings.map((saving, i) => (
                                         <SavingItem saving={saving} key={i} />
                                     ))}
@@ -188,9 +186,8 @@ function Dashboard() {
                     <div className="flex items-center gap-60">
                         <p>In: ${posAmount}</p>
                         <p>Out: ${negAmount}</p>
-                        <p>Sort</p>
                         <Link
-                            className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
+                            className="bg-blue-50 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
                             to="/"
                         >
                             Back Home

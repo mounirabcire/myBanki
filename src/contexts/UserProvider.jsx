@@ -160,6 +160,47 @@ function reducer(state, action) {
 
             return { ...stateUpdatedSavings };
 
+        case 'account/savedAmount':
+            const newSavedAmount = { ...action.payload };
+            let { savings } = state;
+            savings = savings.map(saving =>
+                saving.object !== newSavedAmount.object
+                    ? { ...saving }
+                    : { ...newSavedAmount }
+            );
+
+            const stateUpdatedSavedAmount = {
+                ...state,
+                savings,
+            };
+            updateLocalStorage(
+                'users',
+                state.userName,
+                stateUpdatedSavedAmount
+            );
+
+            return { ...stateUpdatedSavedAmount };
+
+        case 'account/removeObject':
+            const objectName = action.payload;
+            updateLocalStorage(
+                'users',
+                state.userName,
+                {
+                    ...state,
+                    savings: state.savings.filter(
+                        saving => saving.object !== objectName
+                    ),
+                }
+            );
+
+            return {
+                ...state,
+                savings: state.savings.filter(
+                    saving => saving.object !== objectName
+                ),
+            };
+
         default:
             return { ...state };
     }

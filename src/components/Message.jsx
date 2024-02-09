@@ -19,10 +19,12 @@ function Message({ children, type, onClick }) {
         const newSaving = {
             object,
             amount,
+            savedAmount: 0,
         };
         dispatch({ type: 'account/saving', payload: newSaving });
         setObject('');
         setAmount('');
+        onClick();
     }
 
     if (type === 'signup')
@@ -67,7 +69,7 @@ function Message({ children, type, onClick }) {
                             type="number"
                             placeholder="Amount..."
                             value={amount}
-                            onChange={e => setAmount(e.target.value)}
+                            onChange={e => setAmount(Number(e.target.value))}
                             required
                             className="p-10 w-full bg-transparent border border-blue-50 focus:outline-none"
                         />

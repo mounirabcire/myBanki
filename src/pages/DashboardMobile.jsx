@@ -145,7 +145,7 @@ function DashboardMobile() {
                         <p className="text-small">Your saving card is empty</p>
                     )}
                     {savings.length > 0 && (
-                        <div className="space-y-10 overflow-y-scroll h-[170px] ">
+                        <div className="space-y-10 overflow-hidden overflow-y-scroll h-[170px] ">
                             {savings.map((saving, i) => (
                                 <SavingItem saving={saving} key={i} />
                             ))}
@@ -184,7 +184,6 @@ function DashboardMobile() {
                 <div className="flex items-center gap-15">
                     <p>In: ${posAmount}</p>
                     <p>Out: ${negAmount}</p>
-                    <p>Sort</p>
                 </div>
                 <div>
                     <p className="space-x-[1px]">
