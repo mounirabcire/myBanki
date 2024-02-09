@@ -64,7 +64,7 @@ function Header() {
                                 href="#features"
                                 className="border bg-transparent px-[20px] py-15 inline-block text-white rounded-normal font-bold "
                             >
-                                See Feature
+                                See Features
                             </a>
                         </div>
                     </div>
