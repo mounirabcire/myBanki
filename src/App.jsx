@@ -15,6 +15,8 @@ import RequestLoan from './components/RequestLoan';
 import PayLoan from './components/PayLoan';
 
 function App() {
+    // FIXME: in the log in page the user cannot go back to the main page.
+
     return (
         <UserProvider>
             <AuthenticationProvider>

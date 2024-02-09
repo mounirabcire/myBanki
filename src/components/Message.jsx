@@ -29,7 +29,7 @@ function Message({ children, type, onClick }) {
 
     if (type === 'signup')
         return (
-            <div className="w-screen h-screen backdrop-blur-md bg-[#000000a9] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] absolute flex items-center justify-center">
+            <div className="w-screen h-screen backdrop-blur-md bg-[#000000a9] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed flex items-center justify-center">
                 <div className="py-30 px-60 rounded-normal bg-white text relative ">
                     {children}
                     <span

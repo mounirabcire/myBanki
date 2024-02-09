@@ -5,7 +5,7 @@ import Transaction from '../components/Transaction';
 import { numberFormat } from '../utils/numberFormat';
 import DashboardMobile from './DashboardMobile';
 import Actions from '../components/Actions';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Message from '../components/Message';
 import SavingItem from '../components/SavingItem';
 
@@ -39,23 +39,23 @@ function Dashboard() {
     }
 
     // displaying the current time
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setCurrentTime(new Date());
-    //     }, 1000);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
 
-    //     return () => clearInterval(timer);
-    // }, []);
+        return () => clearInterval(timer);
+    }, []);
 
-    // console.log(
-    //     transactions.sort((a, b) => {
-    //         const x = a.amount;
-    //         const y = b.amount;
+    console.log(
+        transactions.sort((a, b) => {
+            const x = a.amount;
+            const y = b.amount;
 
-    //         if (x < y) return -1;
-    //         if (x > y) return 1;
-    //     })
-    // );
+            if (x < y) return -1;
+            if (x > y) return 1;
+        })
+    );
 
     return (
         <>
@@ -153,11 +153,17 @@ function Dashboard() {
                                 </p>
                             )}
                             {savings.length > 0 && (
-                                <div className="space-y-10 overflow-hidden overflow-y-scroll h-[170px] ">
-                                    {savings.map((saving, i) => (
-                                        <SavingItem saving={saving} key={i} />
-                                    ))}
-                                </div>
+                                    <div
+                                        
+                                        className="space-y-10 overflow-hidden overflow-y-scroll h-[170px] "
+                                    >
+                                        {savings.map((saving, i) => (
+                                            <SavingItem
+                                                saving={saving}
+                                                key={i}
+                                            />
+                                        ))}
+                                    </div>
                             )}
                             <div
                                 onClick={() => setAddSaving(pre => !pre)}
