@@ -47,16 +47,6 @@ function Dashboard() {
         return () => clearInterval(timer);
     }, []);
 
-    console.log(
-        transactions.sort((a, b) => {
-            const x = a.amount;
-            const y = b.amount;
-
-            if (x < y) return -1;
-            if (x > y) return 1;
-        })
-    );
-
     return (
         <>
             <section className=" px-10 py-30 min-h-screen text hidden md:flex items-start gap-30 relative ">

@@ -48,7 +48,6 @@ function DashboardMobile() {
         return () => clearInterval(timer);
     }, []);
 
-    // console.log('rendering')
     return (
         <section className="px-10 py-30 min-h-screen text md:hidden relative overflow-x-hidden space-y-15">
             {addSaving && (
