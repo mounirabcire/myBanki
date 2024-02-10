@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
     useEffect(() => {
         // when this component first mounts, we check if the user is authenticated, if so we return the children,
         // otherwise we navigate directly to the login page
-        if (!isAuthenticated) navigate('/login');
+        if (!isAuthenticated) navigate('/login', { replace: true });
     }, [isAuthenticated, navigate]);
 
     return isAuthenticated ? children : null;

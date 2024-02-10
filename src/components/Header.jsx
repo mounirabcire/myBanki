@@ -34,9 +34,12 @@ function Header() {
                         <i className="ri-menu-4-line"></i>
                     </div>
                     <div className="hidden lg:block">
-                        <button className="bg-blue-10 px-[24px] py-15 rounded-normal font-bold text-white">
-                            <Link to="login">Get Started</Link>
-                        </button>
+                        <Link
+                            className="bg-blue-50 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
+                            to="dashboard"
+                        >
+                            Dashboard
+                        </Link>
                     </div>
                 </nav>
                 <section className="herro-section flex flex-col justify-center items-start ">
@@ -55,17 +58,17 @@ function Header() {
                         </div>
                         <div className="space-x-15">
                             <Link
-                                className="bg-blue-10 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
+                                className="bg-blue-50 px-[20px] py-15 inline-block rounded-normal font-bold text-white"
                                 to="dashboard"
                             >
-                                Get Started
+                                Dashboard
                             </Link>
-                            <a
-                                href="#features"
+                            <Link
+                                to="signup"
                                 className="border bg-transparent px-[20px] py-15 inline-block text-white rounded-normal font-bold "
                             >
-                                See Features
-                            </a>
+                                Sign up
+                            </Link>
                         </div>
                     </div>
                 </section>
