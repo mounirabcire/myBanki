@@ -25,6 +25,10 @@
         @apply font-title;
     }
 
+    .header{
+        background-image: url('../public/bg.webp');
+    }
+
     .herro-section {
         height: calc(100vh - 67px + 30px);
     }

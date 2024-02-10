@@ -16,7 +16,7 @@ function Header() {
     }
 
     return (
-        <header className="min-h-screen bg-hero-section bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
+        <header className="header min-h-screen bg-[center_right_-300px] sm:bg-center bg-no-repeat bg-cover overflow-hidden relative">
             {isVisible && (
                 <MenuBar
                     onClick={handleMenuBar}
