@@ -16,13 +16,8 @@ const Signup = lazy(() => import('./pages/Signup'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
-// const Withdraw = lazy(() => import('./components/Withdraw'));
-// const Deposit = lazy(() => import('./components/Deposit'));
-// const RequestLoan = lazy(() => import('./components/RequestLoan'));
-// const PayLoan = lazy(() => import('./components/PayLoan'));
 
 function App() {
-    // FIXME: in the log in page the user cannot go back to the main page.
 
     return (
         <UserProvider>
