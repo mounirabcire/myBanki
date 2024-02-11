@@ -1,13 +1,16 @@
-# ![Logo](./public/logo.svg) myBanki
+<div style='display:flex; align-items:center'>
+  <h1 style='margin-right: 10px'>myBanki</h1>
+  <img src='./public/logo.svg' alt='Logo' />
+</div>
 
 ## About This Project 🚀
 **myBanki** is a fun project that simulates an online banking platform. It consists of a static webpage providing bank information such as features and pricing, along with a user-friendly dashboard where users can view their balance and perform various actions.
 Dont deposit too much :tw-1f60c:.
 
 ## Technologies 🛠️
-- tailwindcss
-- React
-- Framer Motion
+- `tailwindcss`
+- `React`
+- `Framer Motion`
 
 ## Features 💡
 - To access the dashboard, users must log in. If they don't have an account, they need to sign up.
