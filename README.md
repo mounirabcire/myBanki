@@ -1,5 +1,5 @@
-<div style='display:flex; align-items:center'>
-  <h1 style='margin-right: 10px'>myBanki</h1>
+<div style="display:flex; align-items:center">
+  <h1 style="margin-right: 10px">myBanki</h1>
   <img src='./public/logo.svg' alt='Logo' />
 </div>
 
