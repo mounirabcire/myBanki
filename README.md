@@ -1,4 +1,4 @@
-#![Logo](./public/logo.svg) myBanki
+# ![Logo](./public/logo.svg) myBanki
 
 ## About This Project 🚀
 **myBanki** is a fun project that simulates an online banking platform. It consists of a static webpage providing bank information such as features and pricing, along with a user-friendly dashboard where users can view their balance and perform various actions.
