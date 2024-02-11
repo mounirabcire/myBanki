@@ -37,3 +37,4 @@ Dont deposit too much :tw-1f60c:.
 4. Open the address shown in your console on your web browser
 
 ## Demo 📸 
+You can start exploring the app here: [myBanki](https://my-banki.vercel.app/)
