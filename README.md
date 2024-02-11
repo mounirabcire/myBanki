@@ -17,6 +17,7 @@ Dont deposit too much :tw-1f60c:.
 - Users can view their transaction history.
 - Users can check their total deposits and withdrawals, as well as view the current time.
 - The savings card feature allows users to set aside money to buy expensive things.
+- The application is responsive.
 
 ## Learnings 📚
 - Ensuring route protection against unauthorized access by unauthenticated users.
